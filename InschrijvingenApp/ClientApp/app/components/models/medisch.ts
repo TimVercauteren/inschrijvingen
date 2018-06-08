@@ -2,7 +2,7 @@
     constructor() {
         this.huisArtsNaam = "";
         this.huisArtsTelefoon = "";
-        this.ziekteIngrep = "";
+        this.ziekteIngreep = "";
         this.suikerZiekte = false;
         this.astma = false;
         this.hartkwaal = false;
@@ -23,7 +23,7 @@
 
     public huisArtsNaam: string;
     public huisArtsTelefoon: string;
-    public ziekteIngrep: string;
+    public ziekteIngreep: string;
     public suikerZiekte: boolean;
     public astma: boolean;
     public hartkwaal: boolean;

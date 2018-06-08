@@ -7,9 +7,9 @@
                 <span class="input-group-btn">
                     <button class="btn btn-default" (click)="login()" type="button">Inloggen</button>
                 </span>
-                <input [(ngModel)]="Paswoord" type="text" class="form-control" placeholder="Paswoord" />
-            </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
+                <input [(ngModel)]="Paswoord" type="password" class="form-control" placeholder="Paswoord" />
+            </div>
+        </div>
     </div>
 </div>
 
@@ -47,11 +47,11 @@
                                 <button (click)="zoekKind()" class="btn btn-default" type="button">Zoek</button>
                             </span>
                             <input type="text" [(ngModel)]="zoekNaam" class="form-control" placeholder="Zoek voornaam kind">
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div><!-- /panelAdmdin-->
+        </div>
         <div class="panel panel-default" [hidden]="!hasSearched">
             <div class="panel panel-heading">
                 <h1>Zoekresultaten</h1>
@@ -153,7 +153,12 @@
                 <hr />
                 <div class="row">
                     <div class="col-sm-3">
-
+                        <label class="label label-default">Huisarts: </label>
+                        <span style="margin-left:3px;color:red;">{{medisch.huisArtsNaam}}</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Telefoon: </label>
+                        <span style="margin-left:3px;color:red;">{{medisch.huisArtsTelefoon}}</span>
                     </div>
                 </div>
             </div>
