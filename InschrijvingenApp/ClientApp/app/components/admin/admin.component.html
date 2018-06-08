@@ -1,0 +1,106 @@
+﻿<div class="container" [hidden]="loggedIn">
+    <h1>Log in administratorpagina:</h1>
+    <br />
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" (click)="login()" type="button">Inloggen</button>
+                </span>
+                <input [(ngModel)]="Paswoord" type="text" class="form-control" placeholder="Paswoord" />
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div>
+</div>
+
+<div class="container" [hidden]="!loggedIn">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <h1>Admin Paneel</h1>
+            </div>
+            <div class="panel panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h4>Afdrukken lijsten</h4>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-default" (click)="afdrukkenKleuters()">Kleuters</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-default" (click)="afdrukkenJongsten()">Jongsten</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-default" (click)="afdrukkenMidden()">Midden</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-default" (click)="afdrukkenOudsten()">Oudsten</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h4>Zoek kinderen</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button (click)="zoekKind()" class="btn btn-default" type="button">Zoek</button>
+                            </span>
+                            <input type="text" [(ngModel)]="zoekNaam" class="form-control" placeholder="Zoek voornaam kind">
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div>
+            </div>
+        </div><!-- /panelAdmdin-->
+        <div class="panel panel-default" [hidden]="!hasSearched">
+            <div class="panel panel-heading">
+                <h1>Zoekresultaten</h1>
+            </div>
+            <div class="panel panel-body">
+                <ul>
+                    <li *ngFor="let model of searchList">
+                        <a class="link-active" (click)="displayChild(model.id)">{{model.voornaam}} {{model.naam}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-default" [hidden]="!hasClickedName">
+            <div class="panel panel-heading">
+                <h1>Overzicht lid</h1>
+            </div>
+            <div class="panel panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="label label-default">Voornaam: </label>
+                        <span style="margin-left:3px;"> {{kind.persoon.voornaam}}</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Naam: </label>
+                        <span style="margin-left:3px;"> {{kind.persoon.naam}}</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Geboortedatum: </label>
+                        <span style="margin-left:3px;"> {{kind.geboortedatum | date}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="label label-default">Mag alleen naar huis?</label>
+                        <span style="margin-left:3px;color:green" [hidden]='!kind.zelfNaarHuis'> Ja </span>
+                        <span style="margin-left:3px;color:red" [hidden]='kind.zelfNaarHuis'> Nee </span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Broers / Zussen: </label>
+                        <span style="margin-left:3px;">{{kind.broersZussen}}</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Afhaalpersoon: </label>
+                        <span style="margin-left:3px;">{{kind.afhaalPersoon}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
