@@ -57,6 +57,7 @@ export class AdminComponent {
         adres.huisnummer = "30";
         adres.postcode = "9240";
         adres.straat = "Zuidlaan"
+
         this.ouders.adres = adres;
         this.ouders.ouder1.voornaam = "Philip";
         this.ouders.ouder1.naam = "Vercauteren";
@@ -82,7 +83,6 @@ export class AdminComponent {
             },
                 (error) => console.log(error),
                 () => console.log("observable complete"));
-
 
         this.loggedIn = true;
     }
