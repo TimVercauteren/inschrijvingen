@@ -24,7 +24,7 @@ namespace InschrijvingPietieterken.Controllers
         }
 
         [HttpPost("resetpwd/tim")]
-        public async Task<IActionResult> ResetPwd([FromForm] string paswoord)
+        public async Task<IActionResult> ResetPwd([FromQuery] string paswoord)
         {
             try
             {
@@ -45,39 +45,39 @@ namespace InschrijvingPietieterken.Controllers
             {
                 var loggedIn = await _loginManager.Login(password);
                 if (loggedIn)
-                    return Ok();
+                    return Ok(new { status = "ingelogd" });
                 else
                     return Unauthorized();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Unauthorized();
             }
         }
 
         [HttpGet("kleuters")]
-        public async Task<HttpResponseMessage> GetKleuters()
+        public async Task<IActionResult> GetKleuters()
         {
             var groep = LeeftijdenGroepen.Kleuters;
             return await MakeMessageForGroup(groep);
         }
 
         [HttpGet("jongsten")]
-        public async Task<HttpResponseMessage> GetJongsten()
+        public async Task<IActionResult> GetJongsten()
         {
             var groep = LeeftijdenGroepen.Jongsten;
             return await MakeMessageForGroup(groep);
         }
 
         [HttpGet("midden")]
-        public async Task<HttpResponseMessage> GetMidden()
+        public async Task<IActionResult> GetMidden()
         {
             var groep = LeeftijdenGroepen.Middden;
             return await MakeMessageForGroup(groep);
         }
 
         [HttpGet("oudsten")]
-        public async Task<HttpResponseMessage> GetOudsten()
+        public async Task<IActionResult> GetOudsten()
         {
             var groep = LeeftijdenGroepen.Oudsten;
             return await MakeMessageForGroup(groep);
@@ -101,31 +101,15 @@ namespace InschrijvingPietieterken.Controllers
 
         }
 
-        private async Task<HttpResponseMessage> MakeMessageForGroup(string groep)
+        private async Task<IActionResult> MakeMessageForGroup(string groep)
         {
-            try
+            var childList = await _dataProcessor.GetChildList(groep);
+            var attachment = _attachmentProcessor.GetExcel(childList, groep);
+            var fileContentResult = new FileContentResult(attachment, "application/xlsx")
             {
-                var childList = await _dataProcessor.GetChildList(groep);
-
-                var attachment = _attachmentProcessor.GetExcel(childList, groep);
-
-                var result = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
-                {
-                    Content = new ByteArrayContent(attachment)
-                };
-                result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment")
-                {
-                    FileName = $"{groep}.xls"
-                };
-                result.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-
-                return result;
-
-            }
-            catch (Exception)
-            {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
-            }
+                FileDownloadName = $"{groep}.xlsx"
+            };
+            return fileContentResult;
         }
     }
 }

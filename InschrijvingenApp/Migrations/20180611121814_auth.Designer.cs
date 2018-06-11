@@ -11,9 +11,10 @@ using System;
 namespace InschrijvingPietieterken.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    partial class EntityContextModelSnapshot : ModelSnapshot
+    [Migration("20180611121814_auth")]
+    partial class auth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,7 +110,7 @@ namespace InschrijvingPietieterken.Migrations
 
                     b.Property<string>("Allergieen");
 
-                    b.Property<string>("AndereAandoeningen");
+                    b.Property<string>("AndereAandodeningen");
 
                     b.Property<bool>("Astma");
 

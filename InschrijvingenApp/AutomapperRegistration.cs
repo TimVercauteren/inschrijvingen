@@ -52,13 +52,17 @@ namespace InschrijvingPietieterken
         {
             public ChildPrintModel Convert(Inschrijving source, ChildPrintModel destination, ResolutionContext context)
             {
-                destination.Postcode = source.Ouders.Adres.Postcode;
-                destination.Adres = $"{source.Ouders?.Adres?.Straat} {source.Ouders.Adres.Huisnummer} {source.Ouders.Adres.Bus}";
-                destination.Email = source.Ouders.Email1;
-                destination.GeboorteDatum = source.Kind.GeboorteDatum;
-                destination.Naam = source.Kind.Persoon.Naam;
-                destination.Voornaam = source.Kind.Persoon.Voornaam;
-                destination.TelefoonNummer = source.Ouders.Telefoon1;
+                destination = new ChildPrintModel
+                {
+                    Postcode = source.Ouders.Adres.Postcode,
+                    Adres = $"{source.Ouders?.Adres?.Straat} {source.Ouders.Adres.Huisnummer} {source.Ouders.Adres.Bus}",
+                    Gemeente = source.Ouders.Adres.Gemeente,
+                    Email = source.Ouders.Email1,
+                    GeboorteDatum = source.Kind.GeboorteDatum.ToShortDateString(),
+                    Naam = source.Kind.Persoon.Naam,
+                    Voornaam = source.Kind.Persoon.Voornaam,
+                    TelefoonNummer = source.Ouders.Telefoon1
+                };
 
                 return destination;
             }

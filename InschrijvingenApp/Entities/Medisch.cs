@@ -13,7 +13,7 @@ namespace InschrijvingPietieterken.Entities
         public bool Huidaandoening { get; set; }
         public bool Epilepsie { get; set; }
         public string Allergieen { get; set; } // ; seperated
-        public string AndereAandodeningen { get; set; } // ; seperated
+        public string AndereAandoeningen { get; set; } // ; seperated
         public string AanpakKind { get; set; }
         public bool VaccinatieKindEnGezin { get; set; }
         public bool KanZwemmen { get; set; }

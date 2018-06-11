@@ -1,5 +1,8 @@
 ﻿<div class="container" [hidden]="loggedIn">
-    <h1>Log in administratorpagina:</h1>
+    <h1>Log in:</h1>
+    <div  [hidden]="!hasErrors">
+        <label class="label-danger">{{errors}}</label>
+    </div>
     <br />
     <div class="row">
         <div class="col-lg-6">
@@ -7,7 +10,7 @@
                 <span class="input-group-btn">
                     <button class="btn btn-default" (click)="login()" type="button">Inloggen</button>
                 </span>
-                <input [(ngModel)]="Paswoord" type="password" class="form-control" placeholder="Paswoord" />
+                <input [(ngModel)]="password" type="password" class="form-control" placeholder="Paswoord" />
             </div>
         </div>
     </div>

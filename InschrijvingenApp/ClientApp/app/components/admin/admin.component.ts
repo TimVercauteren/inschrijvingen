@@ -4,6 +4,7 @@ import { Inschrijving } from '../models/inschrijving';
 import { SearchModel } from '../models/searchModel';
 import { Kind } from '../models/Kind';
 import { Adres } from '../models/Adres';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,9 +14,12 @@ import { Adres } from '../models/Adres';
 })
 export class AdminComponent {
 
-    constructor(private adminService: AdminService) {
+    constructor(private adminService: AdminService, private router: Router) {
 
     }
+
+    private errors: string = "";
+    private hasErrors: boolean = false;
 
     private loggedIn: boolean = false;
     private hasSearched: boolean = false;
@@ -88,15 +92,19 @@ export class AdminComponent {
     }
 
     login() {
-        console.log("ingelogd");
+        this.hasErrors = false;
         var response = this.adminService.authenticate(this.password)
-            .subscribe((jsondata) => {
-                console.log(jsondata)
-            },
-                (error) => console.log(error),
-                () => console.log("observable complete"));
-
-        this.loggedIn = true;
+            .subscribe(
+                (jsondata) => {
+                    this.loggedIn = true;
+                    console.log("ingelogd");
+                },
+                (error) => {
+                    this.loggedIn = false;
+                    this.errors = "Fout paswoord, probeer opnieuw om in te loggen";
+                    this.hasErrors = true;
+                }
+            );
     }
 
     zoekKind() {

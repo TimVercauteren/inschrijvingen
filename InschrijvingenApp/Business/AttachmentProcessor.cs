@@ -17,13 +17,14 @@ namespace InschrijvingPietieterken.Business
                 worksheet.Cells["B1"].Value = "Voornaam";
                 worksheet.Cells["C1"].Value = "E-Mailadres";
                 worksheet.Cells["D1"].Value = "Telefoon";
-                worksheet.Cells["E1"].Value = "Postcode";
-                worksheet.Cells["F1"].Value = "Gemeente";
-                worksheet.Cells["G1"].Value = "Geboortedatum";
-                worksheet.Cells["H1"].Value = "Dag/Maand";
-                worksheet.Cells["I1"].Value = "Betaald?";
+                worksheet.Cells["E1"].Value = "Adres";
+                worksheet.Cells["F1"].Value = "Postcode";
+                worksheet.Cells["G1"].Value = "Gemeente";
+                worksheet.Cells["H1"].Value = "Geboortedatum";
+                worksheet.Cells["I1"].Value = "Dag/Maand";
+                worksheet.Cells["J1"].Value = "Betaald?";
 
-                using (var range = worksheet.Cells[1, 1, 1, 9])
+                using (var range = worksheet.Cells[1, 1, 1, 10])
                 {
                     range.Style.Font.Bold = true;
                     range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
@@ -32,6 +33,9 @@ namespace InschrijvingPietieterken.Business
                 }
 
                 worksheet.Cells["A2"].LoadFromCollection(inschrijvingen);
+
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
 
                 return package.GetAsByteArray();
             }

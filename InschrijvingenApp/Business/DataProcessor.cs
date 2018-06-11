@@ -23,9 +23,9 @@ namespace InschrijvingPietieterken.Business
 
         public async Task<List<ChildPrintModel>> GetChildList(string key)
         {
-            var kleuters = await GetListOfGroep(key);
+            var result = await GetListOfGroep(key);
 
-            var excelListModel = kleuters.Select(k => Mapper.Map<ChildPrintModel>(k)).ToList();
+            var excelListModel = result.Select(k => Mapper.Map<ChildPrintModel>(k)).ToList();
 
             return excelListModel;
         }
@@ -34,9 +34,11 @@ namespace InschrijvingPietieterken.Business
         private async Task<List<Inschrijving>> GetListOfGroep(string key)
         {
             var geboorteJaren = LeeftijdenGroepen.GetGeboorteJarenGroepen(key);
+            var minDatum = geboorteJaren.Item1;
+            var maxDatum = geboorteJaren.Item2;
 
             var groepsLijst = _context.Inschrijvingen
-                .Where(i => i.Kind.GeboorteDatum >= geboorteJaren.Item1 && i.Kind.GeboorteDatum <= geboorteJaren.Item2)
+                .Where(i => i.Kind.GeboorteDatum >= minDatum && i.Kind.GeboorteDatum <= maxDatum)
                 .Include(i => i.Kind)
                 .Include(i => i.Kind).ThenInclude(k => k.Persoon)
                 .Include(i => i.Ouders)
@@ -44,7 +46,6 @@ namespace InschrijvingPietieterken.Business
                 .OrderBy(i => i.Kind.Persoon.Naam);
 
             return await groepsLijst.ToListAsync();
-
         }
 
 
@@ -52,8 +53,7 @@ namespace InschrijvingPietieterken.Business
         {
             if (param == "voornaam")
             {
-                var lijst = await _context.Inschrijvingen.Where(x => x.Kind.Persoon.Voornaam == zoekTekst)
-                                .Include(x => x.Kind)
+                var lijst = await _context.Inschrijvingen.Where(x => x.Kind.Persoon.Voornaam.ToLower().Contains(zoekTekst.ToLower()))
                                 .Include(x => x.Kind).ThenInclude(k => k.Persoon)
                                 .Select(x => Mapper.Map<SearchKindModel>(x))
                                 .ToListAsync();
@@ -61,8 +61,7 @@ namespace InschrijvingPietieterken.Business
             }
             else
             {
-                var lijst =  await _context.Inschrijvingen.Where(x => x.Kind.Persoon.Naam == zoekTekst)
-                                .Include(x => x.Kind)
+                var lijst =  await _context.Inschrijvingen.Where(x => x.Kind.Persoon.Naam.ToLower().Contains(zoekTekst.ToLower()))
                                 .Include(x => x.Kind).ThenInclude(k => k.Persoon)
                                 .Select(x => Mapper.Map<SearchKindModel>(x))
                                 .ToListAsync();
@@ -72,11 +71,8 @@ namespace InschrijvingPietieterken.Business
 
         public async Task<InschrijvingModel> GetChild(int id)
         {
-
             var result = await _context.Inschrijvingen.Where(c => c.Id == id)
-                .Include(x => x.Kind)
                 .Include(x => x.Kind).ThenInclude(k => k.Persoon)
-                .Include(x => x.Ouders)
                 .Include(x => x.Ouders).ThenInclude(o => o.Adres)
                 .Include(x => x.Ouders).ThenInclude(o => o.Ouder1)
                 .Include(x => x.Ouders).ThenInclude(o => o.Ouder2)

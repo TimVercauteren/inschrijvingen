@@ -30,10 +30,10 @@ namespace InschrijvingPietieterken.Shared
                 bovengrens = grenzen.Item2;
             }
 
-            var beginDatum = new DateTime(currentYear - ondergrens, 1, 1);
-            var eindDatum = new DateTime(currentYear - bovengrens, 12, 31);
+            var minDatum = new DateTime(currentYear - bovengrens, 1, 1);
+            var maxDatum = new DateTime(currentYear - ondergrens, 12, 31);
 
-            return new Tuple<DateTime, DateTime>(beginDatum, eindDatum);
+            return new Tuple<DateTime, DateTime>(minDatum, maxDatum);
         }
     }
 }

@@ -22,6 +22,7 @@ namespace InschrijvingPietieterken
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddServices();
+            services.AddAutoMapper();
             services.AddDbContext<EntityContext>(options =>
                 options.UseSqlServer(connString));
             services.AddMvc();

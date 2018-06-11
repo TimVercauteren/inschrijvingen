@@ -15,7 +15,7 @@ namespace InschrijvingPietieterken.Models
         public string Adres { get; set; }
         public string Postcode { get; set; }
         public string Gemeente { get; set; }
-        public DateTime GeboorteDatum { get; set; }
+        public string GeboorteDatum { get; set; }
 
     }
 
