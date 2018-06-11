@@ -154,11 +154,120 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <label class="label label-default">Huisarts: </label>
-                        <span style="margin-left:3px;color:red;">{{medisch.huisArtsNaam}}</span>
+                        <span style="margin-left:3px;">{{medisch.huisArtsNaam}}</span>
                     </div>
                     <div class="col-sm-3">
                         <label class="label label-default">Telefoon: </label>
-                        <span style="margin-left:3px;color:red;">{{medisch.huisArtsTelefoon}}</span>
+                        <span style="margin-left:3px;">{{medisch.huisArtsTelefoon}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label class="label label-default">Ziektes / medische ingrepen: </label>
+                        <span style="margin-left:3px;">{{medisch.ziekteIngreep}}</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Gevaccineerd volgens Kind en Gezin: </label>
+                        <span [hidden]="!medisch.vaccinatieKindEnGezin" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.vaccinatieKindEnGezin" class="angular-bool-no">Nee</span>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="label label-default">Suikerziekte: </label>
+                        <span [hidden]="!medisch.suikerziekte" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.suikerziekte" class="angular-bool-no">Nee</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Astma: </label>
+                        <span [hidden]="!medisch.astma" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.astma" class="angular-bool-no">Nee</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Hartkwaal: </label>
+                        <span [hidden]="!medisch.hartkwaal" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.hartkwaal" class="angular-bool-no">Nee</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="label label-default">Huidaandoening: </label>
+                        <span [hidden]="!medisch.huidaandoening" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.huidaandoening" class="angular-bool-no">Nee</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Epilepsie: </label>
+                        <span [hidden]="!medisch.epilepsie" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.epilepsie" class="angular-bool-no">Nee</span>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="label label-default">Allergieën:</label>
+                        <ul>
+                            <li style="margin-left:50px;" *ngFor="let allergie of medisch.allergieen">
+                                <p>{{allergie}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="label label-default">Andere aandoeningen:</label>
+                        <ul>
+                            <li style="margin-left:50px;" *ngFor="let aandoening of medisch.andereAandoeningen">
+                                <p>{{aandoening }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label class="label label-default">Opmerkingen aanpakken kind:</label>
+                        <span style="margin-left:3px;">{{medisch.aanpakKind}}</span>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="label label-default">Kan zwemmen: </label>
+                        <span [hidden]="!medisch.kanZwemmen" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.kanZwemmen" class="angular-bool-no">Nee</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Kan sporten: </label>
+                        <span [hidden]="!medisch.kanSporten" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.kanSporten" class="angular-bool-no">Nee</span>
+                    </div>
+                </div>
+                <div class="row" [hidden]="medisch.kanSporten">
+                    <div class="col-sm-12">
+                        <label class="label label-default">Belemmeringen bij het sporten:  </label>
+                        <span style="margin-left:3px;">{{medisch.belemmeringenSport}}</span>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="label label-default">Neemt medicatie: </label>
+                        <span [hidden]="!medisch.geneesmiddelen" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.geneesmiddelen" class="angular-bool-no">Nee</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Mag pijnstillers krijgen: </label>
+                        <span [hidden]="!medisch.pijnstillersAllowed" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.pijnstillersAllowed" class="angular-bool-no">Nee</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="label label-default">Fotos nemen mag: </label>
+                        <span [hidden]="!medisch.fotosAllowed" class="angular-bool-yes">Ja</span>
+                        <span [hidden]="medisch.fotosAllowed" class="angular-bool-no">Nee</span>
+                    </div>
+                </div>
+                <div class="row" [hidden]="!geneesmiddelen">
+                    <div class="col-sm-12">
+                        <label class="label label-default">Medicatie:  </label>
+                        <span style="margin-left:3px;">{{medisch.geneesmiddelenLijst}}</span>
                     </div>
                 </div>
             </div>

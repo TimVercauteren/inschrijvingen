@@ -1,10 +1,10 @@
-﻿using DataAccess.Context;
+﻿using InschrijvenPietieterken.Entities;
 using InschrijvingPietieterken.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace InschrijvingPietieterken.DataAccess
 {
-    public class EntityContext : EntityContextBase<EntityContext>
+    public class EntityContext : DbContext
     {
         public EntityContext(DbContextOptions<EntityContext> options) : base(options)
         {
@@ -54,5 +54,6 @@ namespace InschrijvingPietieterken.DataAccess
         public DbSet<Medisch> MedischeGegevens { get; set; }
         public DbSet<Persoon> Personen { get; set; }
         public DbSet<Adres> Adressen { get; set; }
+        public DbSet<Auth> Authentication { get; set; }
     }
 }

@@ -84,9 +84,9 @@ namespace InschrijvingPietieterken.Controllers
         }
 
         [HttpGet("kind/zoek")]
-        public async Task<IActionResult> SearchChildren([FromQuery] string voornaam)
+        public async Task<IActionResult> SearchChildren([FromQuery] string zoekTekst, [FromQuery] string param = "naam")
         {
-            var result = await _dataProcessor.SearchByName(voornaam);
+            var result = await _dataProcessor.Search(zoekTekst, param);
 
             return Ok(result);
 

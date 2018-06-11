@@ -1,6 +1,6 @@
-﻿using DataAccess.Entities;
+﻿using InschrijvenPietieterken.Entities;
 
-namespace InschrijvingPietieterken.Entities
+namespace InschrijvenPietieterken.Entities
 {
     public class Adres : EntityBase
     {

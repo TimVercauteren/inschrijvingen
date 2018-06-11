@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using DataAccess;
-using DataAccess.Query;
 using InschrijvingPietieterken.Controllers;
+using InschrijvingPietieterken.DataAccess;
 using InschrijvingPietieterken.Entities;
 using InschrijvingPietieterken.Models;
 using InschrijvingPietieterken.Shared;
@@ -15,11 +14,11 @@ namespace InschrijvingPietieterken.Business
 {
     public class DataProcessor : IDataProcessor
     {
-        private readonly IUowProvider _uowProvider;
+        private readonly EntityContext _context;
 
-        public DataProcessor(IUowProvider uowProvider)
+        public DataProcessor(EntityContext entityContext)
         {
-            _uowProvider = uowProvider ?? throw new ArgumentNullException(nameof(uowProvider));
+            _context = entityContext ?? throw new ArgumentNullException(nameof(entityContext));
         }
 
         public async Task<List<ChildPrintModel>> GetChildList(string key)
@@ -30,91 +29,64 @@ namespace InschrijvingPietieterken.Business
 
             return excelListModel;
         }
-       
+
 
         private async Task<List<Inschrijving>> GetListOfGroep(string key)
         {
-            using (var uow = _uowProvider.CreateUnitOfWork())
-            {
-                var repo = uow.GetRepository<Inschrijving>();
-                var includes = GetIncludesForInschrijving();
-                var query = GetWhereQueryForInschrijving(key);
-
-                return (await repo.QueryAsync(query.Expression, includes: includes.Expression)).ToList(); ;
-            }
-        }
-
-        private WhereFilter<Inschrijving> GetWhereQueryForInschrijving(string key)
-        {
             var geboorteJaren = LeeftijdenGroepen.GetGeboorteJarenGroepen(key);
 
-            var result = new WhereFilter<Inschrijving>(null);
-            result.AddExpression(i => i.Kind.GeboorteDatum >= geboorteJaren.Item1 && i.Kind.GeboorteDatum <= geboorteJaren.Item2);
+            var groepsLijst = _context.Inschrijvingen
+                .Where(i => i.Kind.GeboorteDatum >= geboorteJaren.Item1 && i.Kind.GeboorteDatum <= geboorteJaren.Item2)
+                .Include(i => i.Kind)
+                .Include(i => i.Kind).ThenInclude(k => k.Persoon)
+                .Include(i => i.Ouders)
+                .Include(i => i.Ouders).ThenInclude(o => o.Adres)
+                .OrderBy(i => i.Kind.Persoon.Naam);
 
-            return result;
+            return await groepsLijst.ToListAsync();
+
         }
 
-        private Includes<Inschrijving> GetIncludesForInschrijving()
+
+        public async Task<List<SearchKindModel>> Search(string zoekTekst, string param)
         {
-            var includes = new Includes<Inschrijving>(query =>
+            if (param == "voornaam")
             {
-                query = query.Include(i => i.Kind);
-                query = query.Include(i => i.Kind).ThenInclude(k => k.Persoon);
-                query = query.Include(i => i.Ouders);
-                query = query.Include(i => i.Ouders).ThenInclude(o => o.Adres);
-
-                return query;
-            });
-            return includes;
-        }
-
-        public async Task<List<SearchKindModel>> SearchByName(string voornaam)
-        {
-            using (var uow = _uowProvider.CreateUnitOfWork())
+                var lijst = await _context.Inschrijvingen.Where(x => x.Kind.Persoon.Voornaam == zoekTekst)
+                                .Include(x => x.Kind)
+                                .Include(x => x.Kind).ThenInclude(k => k.Persoon)
+                                .Select(x => Mapper.Map<SearchKindModel>(x))
+                                .ToListAsync();
+                return lijst;
+            }
+            else
             {
-                var repo = uow.GetRepository<Inschrijving>();
-
-                var includes = new Includes<Inschrijving>(query =>
-                {
-                    query = query.Include(x => x.Kind);
-                    query = query.Include(x => x.Kind).ThenInclude(k => k.Persoon);
-                    return query;
-                    
-                });
-                var filter = new WhereFilter<Inschrijving>(x => x.Kind.Persoon.Voornaam.ToLower().Contains(voornaam.ToLower()));
-
-                return (await repo.QueryAsync(filter.Expression, includes: includes.Expression)).Select(x => Mapper.Map<SearchKindModel>(x)).ToList();
+                var lijst =  await _context.Inschrijvingen.Where(x => x.Kind.Persoon.Naam == zoekTekst)
+                                .Include(x => x.Kind)
+                                .Include(x => x.Kind).ThenInclude(k => k.Persoon)
+                                .Select(x => Mapper.Map<SearchKindModel>(x))
+                                .ToListAsync();
+                return lijst;
             }
         }
 
         public async Task<InschrijvingModel> GetChild(int id)
         {
-            using (var uow = _uowProvider.CreateUnitOfWork())
+
+            var result = await _context.Inschrijvingen.Where(c => c.Id == id)
+                .Include(x => x.Kind)
+                .Include(x => x.Kind).ThenInclude(k => k.Persoon)
+                .Include(x => x.Ouders)
+                .Include(x => x.Ouders).ThenInclude(o => o.Adres)
+                .Include(x => x.Ouders).ThenInclude(o => o.Ouder1)
+                .Include(x => x.Ouders).ThenInclude(o => o.Ouder2)
+                .Include(x => x.Medisch).FirstOrDefaultAsync();
+
+            if (result != null)
             {
-                var repo = uow.GetRepository<Inschrijving>();
-                var includes = IncludesForDetail;
-                var filter = new WhereFilter<Inschrijving>(q => q.Id == id);
-
-                var result =  (await repo.QueryAsync(filter.Expression, includes: includes.Expression)).FirstOrDefault();
-
                 return Mapper.Map<InschrijvingModel>(result);
             }
-        }
-
-        private Includes<Inschrijving> IncludesForDetail { get {
-                return new Includes<Inschrijving>(query =>
-                {
-                    query = query.Include(x => x.Kind);
-                    query = query.Include(x => x.Kind).ThenInclude(k => k.Persoon);
-                    query = query.Include(x => x.Ouders);
-                    query = query.Include(x => x.Ouders).ThenInclude(o => o.Adres);
-                    query = query.Include(x => x.Ouders).ThenInclude(o => o.Ouder1);
-                    query = query.Include(x => x.Ouders).ThenInclude(o => o.Ouder2);
-                    query = query.Include(x => x.Medisch);
-
-                    return query;
-                });
-            }
+            throw new NotFoundException($"Kind met id {id} niet gevonden");
         }
     }
 }

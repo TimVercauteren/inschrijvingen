@@ -8,7 +8,8 @@ import { Adres } from '../models/Adres';
 
 @Component({
     selector: 'admin',
-    templateUrl: './admin.component.html'
+    templateUrl: './admin.component.html',
+    styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
 
@@ -66,6 +67,17 @@ export class AdminComponent {
         this.ouders.telefoon1 = "052/44 91 72";
         this.ouders.email1 = "philip.vercauteren@gmail.com";
         this.ouders.noodtelefoon = "052/44 91 72";
+
+        let pluimvee: string = "PLUIMVEE"
+        let allergien: Array<string> = ["Pluimvee", "vis", "katten"];
+        let aandoeningen: Array<string> = ["verkouden", "oorontsteking"];
+
+        this.medisch.allergieen = allergien;
+        this.medisch.andereAandoeningen = aandoeningen;
+        this.medisch.kanSporten = false;
+        this.medisch.belemmeringenSport = "Kan niet hinkelen";
+        this.medisch.astma = true;
+
     }
 
     displayChild(id: number) {
@@ -94,21 +106,37 @@ export class AdminComponent {
 
     afdrukkenKleuters() {
         console.log("afdrukken kleuters");
-        //call admdin service
+        var response = this.adminService.getExcels("kleuters")
+            .subscribe((jsondata) => {
+                console.log(jsondata);
+            },
+                (error) => console.log(error));
     }
 
     afdrukkenJongsten() {
         console.log("afdrukken jongsten");
-        //call admdin service
+        var response = this.adminService.getExcels("jongsten")
+            .subscribe((jsondata) => {
+                console.log(jsondata);
+            },
+                (error) => console.log(error));
     }
 
     afdrukkenMidden() {
         console.log("afdrukken midden");
-        //call admdin service
+        var response = this.adminService.getExcels("midden")
+            .subscribe((jsondata) => {
+                console.log(jsondata);
+            },
+                (error) => console.log(error));
     }
 
     afdrukkenOudsten() {
         console.log("afdrukken oudsten");
-        //call admdin service
+        var response = this.adminService.getExcels("oudsten")
+            .subscribe((jsondata) => {
+                console.log(jsondata);
+            },
+                (error) => console.log(error));
     }
 }

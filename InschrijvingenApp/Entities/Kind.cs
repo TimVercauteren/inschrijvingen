@@ -1,4 +1,4 @@
-﻿using DataAccess.Entities;
+﻿using InschrijvenPietieterken.Entities;
 using System;
 
 namespace InschrijvingPietieterken.Entities

@@ -1,4 +1,4 @@
-using DataAccess;
+using InschrijvingPietieterken.DataAccess;
 using InschrijvingPietieterken.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,7 +22,6 @@ namespace InschrijvingPietieterken
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddServices();
-            services.AddDataAccess<EntityContext>();
             services.AddDbContext<EntityContext>(options =>
                 options.UseSqlServer(connString));
             services.AddMvc();
