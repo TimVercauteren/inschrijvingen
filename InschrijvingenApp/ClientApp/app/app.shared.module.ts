@@ -9,6 +9,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { InschrijvingComponent } from './components/home/inschrijving.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminService } from './components/services/adminservices';
+import { ChildComponent } from './components/child/child.component';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { AdminService } from './components/services/adminservices';
         NavMenuComponent,
         InschrijvingComponent,
         AdminComponent,
+        ChildComponent
     ],
     providers: [
         AdminService

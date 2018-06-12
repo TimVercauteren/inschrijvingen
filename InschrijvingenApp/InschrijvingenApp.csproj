@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\child\child.component.ts" />
     <None Remove="ClientApp\app\components\models\Adres.ts" />
     <None Remove="ClientApp\app\components\models\inschrijving.ts" />
     <None Remove="ClientApp\app\components\models\Kind.ts" />
@@ -46,6 +47,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\models\medisch.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\models\ouders.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\models\persoon.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\child\child.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\services\adminservices.ts" />
   </ItemGroup>
 

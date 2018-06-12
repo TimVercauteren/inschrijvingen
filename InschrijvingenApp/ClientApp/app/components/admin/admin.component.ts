@@ -86,9 +86,15 @@ export class AdminComponent {
 
     displayChild(id: number) {
         console.log(id);
+        var response = this.adminService.getChild(id)
+            .subscribe((result) => {
+                this.kind = result.kind;
+                this.ouders = result.ouders;
+                this.medisch = result.medisch;
+                this.inschrijving.overigeInfo = result.overigeInfo;
+            });
         this.hasClickedName = true;
 
-        this.mockData();
     }
 
     login() {
@@ -109,6 +115,8 @@ export class AdminComponent {
 
     zoekKind() {
         console.log(this.zoekNaam);
+        var response = this.adminService.zoekChild(this.zoekNaam, "voornaam")
+            .subscribe((result) => this.searchList = result);
         this.hasSearched = true;
     }
 
