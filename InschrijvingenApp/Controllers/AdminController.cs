@@ -2,6 +2,7 @@
 using InschrijvingPietieterken.Shared;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -86,6 +87,10 @@ namespace InschrijvingPietieterken.Controllers
         [HttpGet("kind/zoek")]
         public async Task<IActionResult> SearchChildren([FromQuery] string zoekTekst, [FromQuery] string param = "naam")
         {
+            if (zoekTekst == null)
+            {
+                return Ok(new List<Models.SearchKindModel>());
+            }
             var result = await _dataProcessor.Search(zoekTekst, param);
 
             return Ok(result);

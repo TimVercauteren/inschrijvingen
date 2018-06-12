@@ -8,8 +8,8 @@
         this.hartkwaal = false;
         this.huidaandoening = false;
         this.epilepsie = false;
-        this.allergieen = new Array<string>();
-        this.andereAandoeningen = new Array<string>();
+        this.allergieen = "";
+        this.andereAandoeningen = "";
         this.aanpakKind = "";
         this.vaccinatieKindEnGezin = false;
         this.kanZwemmen = false;
@@ -29,8 +29,8 @@
     public hartkwaal: boolean;
     public huidaandoening: boolean;
     public epilepsie: boolean;
-    public allergieen: Array<string>;
-    public andereAandoeningen: Array<string>;
+    public allergieen: string;
+    public andereAandoeningen: string;
     public aanpakKind: string;
     public vaccinatieKindEnGezin: boolean;
     public kanZwemmen: boolean;
