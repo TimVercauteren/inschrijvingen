@@ -1,7 +1,8 @@
 ﻿
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers, URLSearchParams  } from '@angular/http';
+import { Http, RequestOptions, Headers, URLSearchParams, ResponseType, ResponseContentType } from '@angular/http';
 import 'rxjs/add/operator/map'
+import { Inschrijving } from '../models/inschrijving';
 
 
 @Injectable()
@@ -9,7 +10,8 @@ export class AdminService {
     constructor(private http: Http) { }
 
     private baseUrl: string = "http://localhost:57805/api";
-    private admin: string = "/admin"
+    private admin: string = "/admin";
+    private gegevens: string = "/gegevens";
 
     authenticate(password: string) {
         let body = `password=${password}`;
@@ -43,8 +45,22 @@ export class AdminService {
 
     getExcels(key: string) {
         return this.http
-            .get(this.baseUrl + this.admin + '/' + key)
-            .map(response => response.json());
+            .get(this.baseUrl + this.admin + '/' + key, { responseType: ResponseContentType.Blob })
+            .map(res => {
+                return {
+                    filename: key + ".xlsx",
+                    data: res.blob()
+                };
+            });
+    }
+
+    postInschrijving(inschrijving: Inschrijving) {
+        let body = inschrijving;
+        let url = this.baseUrl + this.gegevens;
+
+        return this.http
+            .post(url, body)
+            .map(res => res.json());
     }
 
 

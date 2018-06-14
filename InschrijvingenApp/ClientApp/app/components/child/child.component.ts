@@ -20,6 +20,7 @@ export class ChildComponent implements OnInit {
     ngOnInit() {
         let id = 0;
         this.route.params.subscribe(params => id = params.id);
+
         var requestInfo = this.adminService.getChild(id)
             .subscribe((response) => this.model = response);
     }

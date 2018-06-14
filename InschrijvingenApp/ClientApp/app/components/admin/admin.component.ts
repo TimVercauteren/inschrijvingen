@@ -5,6 +5,7 @@ import { SearchModel } from '../models/searchModel';
 import { Kind } from '../models/Kind';
 import { Adres } from '../models/Adres';
 import { Router, Route, ActivatedRoute } from '@angular/router';
+import { ResponseType, ResponseContentType } from '@angular/http';
 
 
 @Component({
@@ -80,36 +81,84 @@ export class AdminComponent implements OnInit {
     afdrukkenKleuters() {
         console.log("afdrukken kleuters");
         var response = this.adminService.getExcels("kleuters")
-            .subscribe((jsondata) => {
-                console.log(jsondata);
-            },
-                (error) => console.log(error));
+            .subscribe(res => {
+                console.log('start download', res);
+                var url = window.URL.createObjectURL(res.data);
+                var a = document.createElement('a');
+                document.body.appendChild(a);
+                a.setAttribute('style', 'display:none');
+                a.href = url;
+                a.download = res.filename;
+                a.click();
+                window.URL.revokeObjectURL(url);
+                a.remove();
+            }, (error) => {
+                console.log('download error:', JSON.stringify(error));
+            }, () => {
+                console.log('Completed download');
+            });
     }
 
     afdrukkenJongsten() {
         console.log("afdrukken jongsten");
         var response = this.adminService.getExcels("jongsten")
-            .subscribe((jsondata) => {
-                console.log(jsondata);
-            },
-                (error) => console.log(error));
+            .subscribe(res => {
+                console.log('start download', res);
+                var url = window.URL.createObjectURL(res.data);
+                var a = document.createElement('a');
+                document.body.appendChild(a);
+                a.setAttribute('style', 'display:none');
+                a.href = url;
+                a.download = res.filename;
+                a.click();
+                window.URL.revokeObjectURL(url);
+                a.remove();
+            }, (error) => {
+                console.log('download error:', JSON.stringify(error));
+            }, () => {
+                console.log('Completed download');
+            });
     }
 
     afdrukkenMidden() {
         console.log("afdrukken midden");
         var response = this.adminService.getExcels("midden")
-            .subscribe((jsondata) => {
-                console.log(jsondata);
-            },
-                (error) => console.log(error));
+            .subscribe(res => {
+                console.log('start download', res);
+                var url = window.URL.createObjectURL(res.data);
+                var a = document.createElement('a');
+                document.body.appendChild(a);
+                a.setAttribute('style', 'display:none');
+                a.href = url;
+                a.download = res.filename;
+                a.click();
+                window.URL.revokeObjectURL(url);
+                a.remove();
+            }, (error) => {
+                console.log('download error:', JSON.stringify(error));
+            }, () => {
+                console.log('Completed download');
+            });
     }
 
     afdrukkenOudsten() {
         console.log("afdrukken oudsten");
         var response = this.adminService.getExcels("oudsten")
-            .subscribe((jsondata) => {
-                console.log(jsondata);
-            },
-                (error) => console.log(error));
+            .subscribe(res => {
+                console.log('start download', res);
+                var url = window.URL.createObjectURL(res.data);
+                var a = document.createElement('a');
+                document.body.appendChild(a);
+                a.setAttribute('style', 'display:none');
+                a.href = url;
+                a.download = res.filename;
+                a.click();
+                window.URL.revokeObjectURL(url);
+                a.remove();
+            }, (error) => {
+                console.log('download error:', JSON.stringify(error));
+            }, () => {
+                console.log('Completed download');
+            });
     }
 }

@@ -31,6 +31,7 @@
     <None Remove="ClientApp\app\components\child\child.component.ts" />
     <None Remove="ClientApp\app\components\models\Adres.ts" />
     <None Remove="ClientApp\app\components\models\inschrijving.ts" />
+    <None Remove="ClientApp\app\components\models\inschrijvingModel.ts" />
     <None Remove="ClientApp\app\components\models\Kind.ts" />
     <None Remove="ClientApp\app\components\models\medisch.ts" />
     <None Remove="ClientApp\app\components\models\Ouders.ts" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\models\Adres.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\models\inschrijving.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\models\inschrijvingModel.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\models\kind.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\models\searchModel.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\models\medisch.ts" />
@@ -49,6 +51,10 @@
     <TypeScriptCompile Include="ClientApp\app\components\models\persoon.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\child\child.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\services\adminservices.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\NewFolder\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

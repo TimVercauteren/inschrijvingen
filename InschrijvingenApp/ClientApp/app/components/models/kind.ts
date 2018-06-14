@@ -9,8 +9,8 @@ export class Kind {
 
     public persoon: Persoon;
     public geboortedatum: Date;
-    public broersZussen: string = "";
+    public broersZussen: string = '';
     public zelfNaarHuis: boolean = false;
-    public afhaalPersoon: string = "";
+    public afhaalPersoon: string = '';
 
 }

@@ -1,1 +1,369 @@
-<h1>Hier komt het formulier</h1>
+<div class="container">
+    <h1>Inschrijvingen 2018</h1>
+    <form (ngSubmit)="onSubmit()" #inschrijvingForm="ngForm">
+        <h3>Kind</h3>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="voornaamKind">Voornaam*</label>
+                    <input type="text" class="form-control" id="voornaamKind"
+                           required
+                           [(ngModel)]="model.voornaamKind" name="voornaamKind">
+                    <!--<div [hidden]="voornaamKind.valid || voornaamKind.pristine"
+                         class="alert alert-danger">
+                        Verplicht veld
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="naamKind">Naam*</label>
+                    <input type="text" class="form-control" id="naamKind"
+                           required
+                           [(ngModel)]="model.naamKind" name="naamKind">
+                    <!--<div [hidden]="naamKind.valid || naamKind.pristine"
+                         class="alert alert-danger">
+                        Verplicht veld
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="geboortedatum">Geboortedatum*</label>
+                    <input type="date" class="form-control" id="geboortedatum"
+                           required
+                           [(ngModel)]="model.geboortedatum" name="geboortedatum">
+                    <!--<div [hidden]="geboortedatum.valid || geboortedatum.pristine"
+                         class="alert alert-danger">
+                        Verplicht veld
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="broersZussen">Broers/zussen op speelplein</label>
+                    <input type="text" class="form-control" id="broersZussen"
+                           [(ngModel)]="model.broersZussen" name="broersZussen">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="zelfNaarHuis">Mag alleen naar huis</label>
+                    <input type="checkbox" class="form-control" id="zelfNaarHuis"
+                           [(ngModel)]="model.zelfNaarHuis" name="zelfNaarHuis">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="afhaalPersoon">Afhaal perso(o)n(en), indien niet ouders:</label>
+                    <input type="text" class="form-control" id="afhaalPersoon"
+                           [(ngModel)]="model.afhaalPersoon" name="afhaalPersoon">
+                </div>
+            </div>
+        </div>
+        <hr />
+        <h3>Ouders/Voogd</h3>
+        <h4>Adres</h4>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="straat">Straat*</label>
+                    <input type="text" class="form-control" id="straat"
+                           required
+                           [(ngModel)]="model.straat" name="straat">
+                    <!--<div [hidden]="voornaamKind.valid || voornaamKind.pristine"
+                         class="alert alert-danger">
+                        Verplicht veld
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="huisnummer">Huisnummer*</label>
+                    <input type="text" class="form-control" id="huisnummer"
+                           required
+                           [(ngModel)]="model.huisnummer" name="huisnummer">
+                    <!--<div [hidden]="naamKind.valid || naamKind.pristine"
+                         class="alert alert-danger">
+                        Verplicht veld
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="bus">Bus</label>
+                    <input type="text" class="form-control" id="bus"
+                           [(ngModel)]="model.bus" name="bus">
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="postcode">Postcode*</label>
+                    <input type="text" class="form-control" id="postcode"
+                           required
+                           [(ngModel)]="model.postcode" name="postcode">
+                    <!--<div [hidden]="geboortedatum.valid || geboortedatum.pristine"
+                         class="alert alert-danger">
+                        Verplicht veld
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="gemeente">Gemeente*</label>
+                    <input type="text" class="form-control" id="gemeente"
+                           required
+                           [(ngModel)]="model.gemeente" name="gemeente">
+                    <!--<div [hidden]="geboortedatum.valid || geboortedatum.pristine"
+                         class="alert alert-danger">
+                        Verplicht veld
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <h4>Ouder/voogd</h4>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="voornaamOuder1">Voornaam*</label>
+                    <input type="text" class="form-control" id="voornaamOuder1"
+                           required
+                           [(ngModel)]="model.voornaamOuder1" name="voornaamOuder1">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="naamOuder1">Naam*</label>
+                    <input type="text" class="form-control" id="naamOuder1"
+                           required
+                           [(ngModel)]="model.naamOuder1" name="naamOuder1">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="telefoon1">Telefoon/gsm*</label>
+                    <input type="tel" class="form-control" id="telefoon1"
+                           required
+                           [(ngModel)]="model.telefoon1" name="telefoon1">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="email1">Email*</label>
+                    <input type="email" class="form-control" id="email1"
+                           required
+                           [(ngModel)]="model.email1" name="email1">
+                </div>
+            </div>
+        </div>
+        <h4>Ouder/voogd</h4>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="voornaamOuder2">Voornaam</label>
+                    <input type="text" class="form-control" id="voornaamOuder2"
+                           [(ngModel)]="model.voornaamOuder2" name="voornaamOuder2">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="naamOuder2">Naam</label>
+                    <input type="text" class="form-control" id="naamOuder2"
+                           [(ngModel)]="model.naamOuder2" name="naamOuder2">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="telefoon2">Telefoon/gsm</label>
+                    <input type="tel" class="form-control" id="telefoon2"
+                           [(ngModel)]="model.telefoon2" name="telefoon2">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="email2">Email</label>
+                    <input type="email" class="form-control" id="email2"
+                           [(ngModel)]="model.email2" name="email2">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="noodnummer">Noodnummer*</label>
+                    <input type="tel" class="form-control" id="noodnummer"
+                           required
+                           [(ngModel)]="model.noodnummer" name="noodnummer">
+                </div>
+            </div>
+        </div>
+        <hr />
+        <h3>Algemene gegevens - Medische info</h3>
+        <h4>Ziekte</h4>
+        <div class="row">
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="astma">Astma</label>
+                    <input type="checkbox" class="form-control" id="astma"
+                           [(ngModel)]="model.astma" name="astma">
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="suikerziekte">Suikerziekte</label>
+                    <input type="checkbox" class="form-control" id="suikerziekte"
+                           [(ngModel)]="model.suikerziekte" name="suikerziekte">
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="hartkwaal">Hartkwaal</label>
+                    <input type="checkbox" class="form-control" id="hartkwaal"
+                           [(ngModel)]="model.hartkwaal" name="hartkwaal">
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="epilepsie">Epilepsie</label>
+                    <input type="checkbox" class="form-control" id="epilepsie"
+                           [(ngModel)]="model.epilepsie" name="epilepsie">
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="huidaandoening">Huidziekte</label>
+                    <input type="checkbox" class="form-control" id="huidaandoening"
+                           [(ngModel)]="model.huidaandoening" name="huidaandoening">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="ziekteIngreep">Andere ziekte/ingreep</label>
+                    <input type="text" class="form-control" id="ziekteIngreep"
+                           [(ngModel)]="model.ziekteIngreep" name="ziekteIngreep">
+                </div>
+            </div>
+        </div>
+        <h4>Allergieen</h4>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="allergieen">Allergieen</label>
+                    <input type="text" class="form-control" id="allergieen"
+                           [(ngModel)]="model.allergieen" name="allergieen">
+                </div>
+            </div>
+        </div>
+        <h4>Huisarts</h4>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="huisArtsNaam">Naam huisarts*</label>
+                    <input type="text" class="form-control" id="huisArtsNaam"
+                           [(ngModel)]="model.huisArtsNaam" name="huisArtsNaam">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="huisArtsTelefoon">Telefoon huisarts*</label>
+                    <input type="tel" class="form-control" id="huisArtsTelefoon"
+                           [(ngModel)]="model.huisArtsTelefoon" name="huisArtsTelefoon">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="vaccinatieKindEnGezin">Gevaccineerd volgens Kind en Gezin</label>
+                    <input type="checkbox" class="form-control" id="vaccinatieKindEnGezin"
+                           [(ngModel)]="model.vaccinatieKindEnGezin" name="vaccinatieKindEnGezin">
+                </div>
+            </div>
+        </div>
+        <h4>Gedrag</h4>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="aanpakKind">Extra info over eventuele aanpak kind voor de speelpleinwerking</label>
+                    <input type="text" class="form-control" id="aanpakKind"
+                           [(ngModel)]="model.aanpakKind" name="aanpakKind">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="kanZwemmen">Zwemmen</label>
+                    <input type="checkbox" class="form-control" id="kanZwemmen"
+                           [(ngModel)]="model.kanZwemmen" name="kanZwemmen">
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <label for="kanSporten">Sporten</label>
+                    <input type="checkbox" class="form-control" id="kanSporten"
+                           [(ngModel)]="model.kanSporten" name="kanSporten">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="belemmeringenSport">Eventuele belemmeringen bij sporten</label>
+                    <input type="text" class="form-control" id="belemmeringenSport"
+                           [(ngModel)]="model.belemmeringenSport" name="belemmeringenSport">
+                </div>
+            </div>
+        </div>
+        <h4>Geneesmiddelen</h4>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="geneesmiddelen">Neemt geneesmiddelen</label>
+                    <input type="checkbox" class="form-control" id="geneesmiddelen"
+                           [(ngModel)]="model.geneesmiddelen" name="geneesmiddelen">
+                </div>
+            </div>
+            <div class="col-sm-6" [hidden]="!model.geneesmiddelen">
+                <div class="form-group">
+                    <label for="geneesmiddelenLijst">Lijst geneesmiddelen</label>
+                    <input type="text" class="form-control" id="geneesmiddelenLijst"
+                           [(ngModel)]="model.geneesmiddelenLijst" name="geneesmiddelenLijst">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="pijnstillersAllowed">Pijnstillers toegestaan</label>
+                    <input type="checkbox" class="form-control" id="pijnstillersAllowed"
+                           [(ngModel)]="model.pijnstillersAllowed" name="pijnstillersAllowed">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="fotosAllowed">Mogen er fotos van uw kind gemaakt worden</label>
+                    <input type="checkbox" class="form-control" id="fotosAllowed"
+                           [(ngModel)]="model.fotosAllowed" name="fotosAllowed">
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="overigeInfo">Extra mogelijke informatie over uw kind</label>
+                    <input type="text" class="form-control" id="overigeInfo"
+                           [(ngModel)]="model.overigeInfo" name="overigeInfo">
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <p>Velden die met een * aangeduid zijn zijn verplicht in te vullen, zonder deze in te vullen kan de inschrijving niet voltooid worden</p>
+        <p>
+
+        </p>
+        <button type="submit" [disabled]="!inschrijvingForm.form.valid" class="btn btn-success">Inschrijven</button>
+    </form>
+</div>

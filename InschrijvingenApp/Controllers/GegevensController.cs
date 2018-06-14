@@ -29,5 +29,6 @@ namespace InschrijvingPietieterken.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
     }
 }
