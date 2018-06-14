@@ -6,101 +6,101 @@
     <div class="panel panel-body">
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Voornaam: </label>
+                <label  >Voornaam: </label>
                 <span style="margin-left:3px;"> {{model.kind.persoon.voornaam}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Naam: </label>
+                <label  >Naam: </label>
                 <span style="margin-left:3px;"> {{model.kind.persoon.naam}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Geboortedatum: </label>
+                <label  >Geboortedatum: </label>
                 <span style="margin-left:3px;"> {{model.kind.geboortedatum | date}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Mag alleen naar huis?</label>
+                <label  >Mag alleen naar huis?</label>
                 <span style="margin-left:3px;color:green" [hidden]='!model.kind.zelfNaarHuis'> Ja </span>
                 <span style="margin-left:3px;color:red" [hidden]='model.kind.zelfNaarHuis'> Nee </span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Broers / Zussen: </label>
+                <label  >Broers / Zussen: </label>
                 <span style="margin-left:3px;">{{model.kind.broersZussen}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Afhaalpersoon: </label>
+                <label  >Afhaalpersoon: </label>
                 <span style="margin-left:3px;">{{model.kind.afhaalPersoon}}</span>
             </div>
         </div>
         <hr />
         <div class="row">
             <div class="col-sm-6">
-                <label class="label label-default">Adres: </label>
+                <label  >Adres: </label>
                 <span style="margin-left:3px;">{{model.ouders.adres.straat}} {{model.ouders.adres.huisnummer}} {{model.ouders.adres.bus}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Postcode: </label>
+                <label  >Postcode: </label>
                 <span style="margin-left:3px;">{{model.ouders.adres.postcode}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Gemeente: </label>
+                <label  >Gemeente: </label>
                 <span style="margin-left:3px;">{{model.ouders.adres.gemeente}}</span>
             </div>
         </div>
         <hr />
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Ouder/Voogd: </label>
+                <label  >Ouder/Voogd: </label>
                 <span style="margin-left:3px;">{{model.ouders.ouder1.voornaam}} {{model.ouders.ouder1.naam}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Ouder/Voogd: </label>
+                <label  >Ouder/Voogd: </label>
                 <span style="margin-left:3px;">{{model.ouders.ouder2.voornaam}} {{model.ouders.ouder2.naam}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Email: </label>
+                <label  >Email: </label>
                 <span style="margin-left:3px;">{{model.ouders.email1}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Email(backup): </label>
+                <label  >Email(backup): </label>
                 <span style="margin-left:3px;">{{model.ouders.email2}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Telefoon: </label>
+                <label  >Telefoon: </label>
                 <span style="margin-left:3px;">{{model.ouders.telefoon1}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Telefoon(backup): </label>
+                <label  >Telefoon(backup): </label>
                 <span style="margin-left:3px;">{{model.ouders.telefoon2}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Noodnummer </label>
+                <label  >Noodnummer </label>
                 <span style="margin-left:3px;color:red;">{{model.ouders.noodtelefoon}}</span>
             </div>
         </div>
         <hr />
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Huisarts: </label>
+                <label  >Huisarts: </label>
                 <span style="margin-left:3px;">{{model.medisch.huisArtsNaam}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Telefoon: </label>
+                <label  >Telefoon: </label>
                 <span style="margin-left:3px;">{{model.medisch.huisArtsTelefoon}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-8">
-                <label class="label label-default">Ziektes / model.medische ingrepen: </label>
+                <label  >Ziektes / model.medische ingrepen: </label>
                 <span style="margin-left:3px;">{{model.medisch.ziekteIngreep}}</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Gevaccineerd volgens model.kind en Gezin: </label>
+                <label  >Gevaccineerd volgens model.kind en Gezin: </label>
                 <span [hidden]="!model.medisch.vaccinatieKindEnGezin" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.vaccinatieKindEnGezin" class="angular-bool-no">Nee</span>
             </div>
@@ -108,29 +108,29 @@
         <hr />
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Suikerziekte: </label>
+                <label  >Suikerziekte: </label>
                 <span [hidden]="!model.medisch.suikerziekte" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.suikerziekte" class="angular-bool-no">Nee</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Astma: </label>
+                <label  >Astma: </label>
                 <span [hidden]="!model.medisch.astma" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.astma" class="angular-bool-no">Nee</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Hartkwaal: </label>
+                <label  >Hartkwaal: </label>
                 <span [hidden]="!model.medisch.hartkwaal" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.hartkwaal" class="angular-bool-no">Nee</span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Huidaandoening: </label>
+                <label  >Huidaandoening: </label>
                 <span [hidden]="!model.medisch.huidaandoening" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.huidaandoening" class="angular-bool-no">Nee</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Epilepsie: </label>
+                <label  >Epilepsie: </label>
                 <span [hidden]="!model.medisch.epilepsie" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.epilepsie" class="angular-bool-no">Nee</span>
             </div>
@@ -138,61 +138,61 @@
         <hr />
         <div class="row">
             <div class="col-sm-6">
-                <label class="label label-default">Allergieën:</label>
+                <label  >Allergieën:</label>
                 <span style="margin-left:3px;">{{model.medisch.allergieen}}</span>
             </div>
             <div class="col-sm-6">
-                <label class="label label-default">Andere aandoeningen:</label>
+                <label  >Andere aandoeningen:</label>
                 <span style="margin-left:3px;">{{model.medisch.andereAandoeningen}}</span>
 
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <label class="label label-default">Opmerkingen aanpakken model.kind:</label>
+                <label  >Opmerkingen aanpakken model.kind:</label>
                 <span style="margin-left:3px;">{{model.medisch.aanpakKind}}</span>
             </div>
         </div>
         <hr />
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Kan zwemmen: </label>
+                <label  >Kan zwemmen: </label>
                 <span [hidden]="!model.medisch.kanZwemmen" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.kanZwemmen" class="angular-bool-no">Nee</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Kan sporten: </label>
+                <label  >Kan sporten: </label>
                 <span [hidden]="!model.medisch.kanSporten" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.kanSporten" class="angular-bool-no">Nee</span>
             </div>
         </div>
         <div class="row" [hidden]="model.medisch.kanSporten">
             <div class="col-sm-12">
-                <label class="label label-default">Belemmeringen bij het sporten:  </label>
+                <label  >Belemmeringen bij het sporten:  </label>
                 <span style="margin-left:3px;">{{model.medisch.belemmeringenSport}}</span>
             </div>
         </div>
         <hr />
         <div class="row">
             <div class="col-sm-3">
-                <label class="label label-default">Neemt medicatie: </label>
+                <label  >Neemt medicatie: </label>
                 <span [hidden]="!model.medisch.geneesmiddelen" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.geneesmiddelen" class="angular-bool-no">Nee</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Mag pijnstillers krijgen: </label>
+                <label  >Mag pijnstillers krijgen: </label>
                 <span [hidden]="!model.medisch.pijnstillersAllowed" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.pijnstillersAllowed" class="angular-bool-no">Nee</span>
             </div>
             <div class="col-sm-3">
-                <label class="label label-default">Fotos nemen mag: </label>
+                <label  >Fotos nemen mag: </label>
                 <span [hidden]="!model.medisch.fotosAllowed" class="angular-bool-yes">Ja</span>
                 <span [hidden]="model.medisch.fotosAllowed" class="angular-bool-no">Nee</span>
             </div>
         </div>
         <div class="row" [hidden]="!geneesmiddelen">
             <div class="col-sm-12">
-                <label class="label label-default">Medicatie:  </label>
+                <label  >Medicatie:  </label>
                 <span style="margin-left:3px;">{{model.medisch.geneesmiddelenLijst}}</span>
             </div>
         </div>

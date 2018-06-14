@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace InschrijvingPietieterken.Migrations
+namespace InschrijvenPietieterken.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    [Migration("20180611121814_auth")]
-    partial class auth
+    [Migration("20180614120952_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,7 +110,7 @@ namespace InschrijvingPietieterken.Migrations
 
                     b.Property<string>("Allergieen");
 
-                    b.Property<string>("AndereAandodeningen");
+                    b.Property<string>("AndereAandoeningen");
 
                     b.Property<bool>("Astma");
 

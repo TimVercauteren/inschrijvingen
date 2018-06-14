@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace InschrijvingPietieterken.Migrations
+namespace InschrijvenPietieterken.Migrations
 {
     [DbContext(typeof(EntityContext))]
     partial class EntityContextModelSnapshot : ModelSnapshot

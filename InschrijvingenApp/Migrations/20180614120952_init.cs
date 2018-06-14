@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace InschrijvingPietieterken.Migrations
+namespace InschrijvenPietieterken.Migrations
 {
     public partial class init : Migration
     {
@@ -18,12 +18,26 @@ namespace InschrijvingPietieterken.Migrations
                     Bus = table.Column<string>(nullable: true),
                     Gemeente = table.Column<string>(nullable: true),
                     Huisnummer = table.Column<string>(nullable: true),
-                    Postcode = table.Column<int>(nullable: false),
+                    Postcode = table.Column<string>(nullable: true),
                     Straat = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_adressen", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Authentication",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Password = table.Column<string>(nullable: true),
+                    User = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Authentication", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,7 +48,7 @@ namespace InschrijvingPietieterken.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AanpakKind = table.Column<string>(nullable: true),
                     Allergieen = table.Column<string>(nullable: true),
-                    AndereAandodeningen = table.Column<string>(nullable: true),
+                    AndereAandoeningen = table.Column<string>(nullable: true),
                     Astma = table.Column<bool>(nullable: false),
                     BelemmeringenSport = table.Column<string>(nullable: true),
                     Epilepsie = table.Column<bool>(nullable: false),
@@ -169,8 +183,7 @@ namespace InschrijvingPietieterken.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_inschrijving_KindId",
                 table: "inschrijving",
-                column: "KindId",
-                unique: true);
+                column: "KindId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_inschrijving_MedischId",
@@ -205,6 +218,9 @@ namespace InschrijvingPietieterken.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Authentication");
+
             migrationBuilder.DropTable(
                 name: "inschrijving");
 
