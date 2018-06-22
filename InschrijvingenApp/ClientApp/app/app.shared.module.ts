@@ -11,6 +11,7 @@ import { InschrijvingComponent } from './components/inschrijving/inschrijving.co
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminService } from './components/services/adminservices';
 import { ChildComponent } from './components/child/child.component';
+import { DoneComponent } from './components/done/done.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { ChildComponent } from './components/child/child.component';
         NavMenuComponent,
         InschrijvingComponent,
         AdminComponent,
-        ChildComponent
+        ChildComponent,
+        DoneComponent
     ],
     providers: [
         AdminService
@@ -31,7 +33,8 @@ import { ChildComponent } from './components/child/child.component';
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: InschrijvingComponent },
-            { path: 'admin/:loggedIn', component: AdminComponent},
+            { path: 'done', component: DoneComponent },
+            { path: 'admin/:loggedIn', component: AdminComponent },
             { path: 'child/:id', component: ChildComponent },
             { path: '**', redirectTo: 'home' },
         ])

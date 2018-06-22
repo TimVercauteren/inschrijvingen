@@ -6,6 +6,7 @@ import { Medisch } from '../models/medisch';
 import { Inschrijving } from '../models/inschrijving';
 import { InschrijvingModel } from '../models/inschrijvingModel';
 import { AdminService } from '../services/adminservices';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'inschrijving',
@@ -16,7 +17,7 @@ export class InschrijvingComponent {
     public inschrijving: Inschrijving;
     public model: InschrijvingModel
 
-    constructor(private adminService: AdminService) {
+    constructor(private adminService: AdminService, private router: Router) {
         this.inschrijving = new Inschrijving();
         this.model = new InschrijvingModel();
     }
@@ -26,7 +27,9 @@ export class InschrijvingComponent {
         this.inschrijving = this.vulInschrijvingIn(this.model)
         this.adminService.postInschrijving(this.inschrijving)
             .subscribe(
-                (res) => console.log('inschrijving Ok'),
+            (res) => {
+                this.router.navigateByUrl("/done");
+            },
                 (error) => console.log(error)
             );
     }
