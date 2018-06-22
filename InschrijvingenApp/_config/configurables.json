@@ -1,0 +1,9 @@
+﻿{
+  "ProductionConstants": {
+    "Host": "pietieterken.database.windows.net",
+    "Database": "pietieterken",
+    "Password": "SpeelpleinAdmin2018",
+    "Username": "hoofdleiding2018",
+    "Port": ""
+  }
+}

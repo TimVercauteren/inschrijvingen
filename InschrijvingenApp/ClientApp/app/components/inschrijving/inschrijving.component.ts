@@ -13,8 +13,8 @@ import { AdminService } from '../services/adminservices';
 })
 export class InschrijvingComponent {
 
-    private inschrijving: Inschrijving;
-    private model: InschrijvingModel
+    public inschrijving: Inschrijving;
+    public model: InschrijvingModel
 
     constructor(private adminService: AdminService) {
         this.inschrijving = new Inschrijving();

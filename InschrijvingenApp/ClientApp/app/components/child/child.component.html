@@ -109,8 +109,8 @@
         <div class="row">
             <div class="col-sm-3">
                 <label  >Suikerziekte: </label>
-                <span [hidden]="!model.medisch.suikerziekte" class="angular-bool-yes">Ja</span>
-                <span [hidden]="model.medisch.suikerziekte" class="angular-bool-no">Nee</span>
+                <span [hidden]="!model.medisch.suikerZiekte" class="angular-bool-yes">Ja</span>
+                <span [hidden]="model.medisch.suikerZiekte" class="angular-bool-no">Nee</span>
             </div>
             <div class="col-sm-3">
                 <label  >Astma: </label>
@@ -190,7 +190,7 @@
                 <span [hidden]="model.medisch.fotosAllowed" class="angular-bool-no">Nee</span>
             </div>
         </div>
-        <div class="row" [hidden]="!geneesmiddelen">
+        <div class="row" [hidden]="!model.medisch.geneesmiddelen">
             <div class="col-sm-12">
                 <label  >Medicatie:  </label>
                 <span style="margin-left:3px;">{{model.medisch.geneesmiddelenLijst}}</span>

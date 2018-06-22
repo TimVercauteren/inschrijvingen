@@ -11,7 +11,7 @@ import { Inschrijving } from "../models/inschrijving";
 })
 export class ChildComponent implements OnInit {
 
-    private model: Inschrijving = new Inschrijving();
+    public model: Inschrijving = new Inschrijving();
 
     constructor(private adminService : AdminService, private route: ActivatedRoute, private router:Router ) {
 

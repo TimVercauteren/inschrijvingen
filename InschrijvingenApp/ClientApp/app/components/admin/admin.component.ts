@@ -18,20 +18,20 @@ export class AdminComponent implements OnInit {
 
     }
 
-    private errors: string = "";
-    private hasErrors: boolean = false;
+    public errors: string = "";
+    public hasErrors: boolean = false;
 
-    private loggedIn: boolean = false;
-    private hasSearched: boolean = false;
-    private hasClickedName: boolean = false;
+    public loggedIn: boolean = false;
+    public hasSearched: boolean = false;
+    public hasClickedName: boolean = false;
 
-    private password: string = "";
-    private zoekNaam: string = "";
-    private childId: number = 0;
+    public password: string = "";
+    public zoekNaam: string = "";
+    public childId: number = 0;
 
-    private zoekenOpVoornaam: boolean = false;
+    public zoekenOpVoornaam: boolean = false;
 
-    private searchList: Array<SearchModel> = [];
+    public searchList: Array<SearchModel> = [];
 
     ngOnInit() {
         let loggedIn = "0";

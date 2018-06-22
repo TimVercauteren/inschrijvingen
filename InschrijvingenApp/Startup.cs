@@ -1,3 +1,5 @@
+using System;
+using InschrijvenPietieterken.Shared;
 using InschrijvingPietieterken.DataAccess;
 using InschrijvingPietieterken.DataAccess;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +8,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace InschrijvingPietieterken
 {
@@ -15,18 +18,27 @@ namespace InschrijvingPietieterken
         {
             Configuration = configuration;
         }
-        readonly string connString = @"Server=(localdb)\mssqllocaldb;Database=Speelplein;Trusted_Connection=True;";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            AppSettings.RegisterConfiguration(services, Configuration.GetSection("ProductionConstants"));
+            var appSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>().Value;
+
+            var connString = GetConnString(appSettings);
+
             services.AddServices();
             services.AddAutoMapper();
             services.AddDbContext<EntityContext>(options =>
                 options.UseSqlServer(connString));
             services.AddMvc();
 
+        }
+
+        private string GetConnString(AppSettings appSettings)
+        {
+            return $"Server=tcp:{appSettings.Host},1433;Initial Catalog={appSettings.Database};Persist Security Info=False;User ID={appSettings.Username};Password={appSettings.Password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
