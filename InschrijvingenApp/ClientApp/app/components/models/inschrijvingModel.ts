@@ -49,5 +49,7 @@
 
     //overige info
     public overigeInfo: string = '';
+    public heeftMaandAbonnement: boolean = false;
+
 
 }

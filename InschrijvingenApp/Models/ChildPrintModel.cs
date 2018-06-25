@@ -16,6 +16,7 @@ namespace InschrijvingPietieterken.Models
         public string Postcode { get; set; }
         public string Gemeente { get; set; }
         public string GeboorteDatum { get; set; }
+        public bool HeeftMaandAbonnement { get; set; }
 
     }
 

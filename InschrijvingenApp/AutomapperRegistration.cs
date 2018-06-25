@@ -61,7 +61,8 @@ namespace InschrijvingPietieterken
                     GeboorteDatum = source.Kind.GeboorteDatum.ToShortDateString(),
                     Naam = source.Kind.Persoon.Naam,
                     Voornaam = source.Kind.Persoon.Voornaam,
-                    TelefoonNummer = source.Ouders.Telefoon1
+                    TelefoonNummer = source.Ouders.Telefoon1,
+                    HeeftMaandAbonnement = source.HeeftMaandAbonnement
                 };
 
                 return destination;

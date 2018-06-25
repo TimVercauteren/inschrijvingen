@@ -21,5 +21,6 @@ namespace InschrijvingPietieterken.Entities
         public Medisch Medisch { get; set; }
 
         public string OverigeInfo { get; set; }
+        public bool HeeftMaandAbonnement { get; set; }
     }
 }

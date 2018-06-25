@@ -41,6 +41,7 @@ export class InschrijvingComponent {
         inschrijvingIngevulud.ouders = this.vulOudersIn(model);
         inschrijvingIngevulud.medisch = this.vulMedischIn(model);
         inschrijvingIngevulud.overigeInfo = model.overigeInfo;
+        inschrijvingIngevulud.heeftMaandAbonnement = model.heeftMaandAbonnement;
 
         return inschrijvingIngevulud;
     }

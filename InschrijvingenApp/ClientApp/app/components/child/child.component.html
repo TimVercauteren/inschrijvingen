@@ -15,7 +15,14 @@
             </div>
             <div class="col-sm-3">
                 <label  >Geboortedatum: </label>
-                <span style="margin-left:3px;"> {{model.kind.geboortedatum | date}}</span>
+                <span style="margin-left:3px;"> {{model.kind.geboortedatum | date: 'fulldate'}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <label>Heeft maandabonnement</label>
+                <span [hidden]="!model.heeftMaandAbonnement" class="angular-bool-yes">Ja</span>
+                <span [hidden]="model.heeftMaandAbonnement" class="angular-bool-no">Nee</span>
             </div>
         </div>
         <div class="row">

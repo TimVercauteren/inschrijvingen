@@ -18,6 +18,7 @@ namespace InschrijvingPietieterken.Business
 
         public async Task<bool> Login(string paswoord)
         {
+            if (string.IsNullOrEmpty(paswoord)) return false;
             var user = "Admin";
 
             var admin = await _context.Authentication.Where(x => x.User == user).FirstOrDefaultAsync();

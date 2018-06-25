@@ -14,4 +14,5 @@ export class Inschrijving {
     public ouders: Ouders;
     public medisch: Medisch;
     public overigeInfo: string = "";
+    public heeftMaandAbonnement: boolean = false;
 }
