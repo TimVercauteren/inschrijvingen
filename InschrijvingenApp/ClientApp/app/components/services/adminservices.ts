@@ -9,8 +9,8 @@ import { Inschrijving } from '../models/inschrijving';
 export class AdminService {
     constructor(private http: Http) { }
 
-    private baseUrl: string = "http://localhost:57805/api";
-    //private baseUrl: string = "http://inschrijvingenapp20180622122247.azurewebsites.net/api";
+    //private baseUrl: string = "http://localhost:57805/api";
+    private baseUrl: string = "http://inschrijvingenapp20180622122247.azurewebsites.net/api";
 
     private admin: string = "/admin";
     private gegevens: string = "/gegevens";

@@ -12,7 +12,7 @@ namespace InschrijvingPietieterken.Shared
 
         private static readonly Dictionary<string, Tuple<int, int>> Leeftijden = new Dictionary<string, Tuple<int, int>>()
         {
-            { Kleuters, new Tuple<int, int>(4,6) },
+            { Kleuters, new Tuple<int, int>(3,6) },
             { Jongsten, new Tuple<int, int>(7,9) },
             { Middden, new Tuple<int, int>(10,12) },
             { Oudsten, new Tuple<int, int>(13,15) }
